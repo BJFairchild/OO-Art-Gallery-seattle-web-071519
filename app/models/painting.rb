@@ -17,7 +17,9 @@ class Painting
   end
 
   def self.total_price
-    self.all.price.sum
+    self.all.reduce(0) do |sum, painting|
+      sum + painting.price
+    end
   end
 
 end

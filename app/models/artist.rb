@@ -6,6 +6,7 @@ class Artist
   def initialize(name, years_experience)
     @name = name
     @years_experience = years_experience
+    @@all << self
   end
 
   def self.all
@@ -31,7 +32,10 @@ class Artist
   end
 
   def self.total_experience
-    self.all.years_experience.sum
+    self.all.reduce(0) do |sum, artist|
+      sum + artist.years_experience
+    
+    end
   end
 
   def self.most_prolific
